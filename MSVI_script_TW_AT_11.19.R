@@ -204,7 +204,8 @@ county_health_rankings_clean$county <- gsub("yakutat", "yakutat city", county_he
 
 
 state_abbv <- read.csv("state_abbv.csv")
-state_abbv <- state_abbv %>% rename(state=?..state)
+state_abbv <- state_abbv %>% clean_names()
+state_abbv <- state_abbv %>% rename(state=i_state)
 state_abbv$state = tolower(state_abbv$state)
 county_health_rankings_clean_2 <- merge(x=county_health_rankings_clean,y=state_abbv,by="state_abbreviation",all.x=TRUE)
 county_health_rankings_clean_2$county_state = paste(county_health_rankings_clean_2$county, county_health_rankings_clean_2$state)
