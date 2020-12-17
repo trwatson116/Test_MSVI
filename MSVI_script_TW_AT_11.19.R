@@ -31,7 +31,8 @@ fips_census_cleaned$county_state <- gsub("anchorage municipality", "anchorage", 
 fips_census_cleaned$county_state <- iconv(fips_census_cleaned$county_state, from = 'UTF-8', to = 'ASCII//TRANSLIT')
 
 fips_additional <- read.csv("abbv_additional.csv")
-fips_additional <- fips_additional %>% rename(fips_county=ï..fips_county)
+fips_additional <- fips_additional %>% clean_names()
+fips_additional <- fips_additional %>% rename(fips_county=i_fips_county)
 fips_additional <- fips_additional %>% mutate(fips_county = as.numeric(fips_county))
 fips_census_cleaned <- bind_rows(fips_census_cleaned, fips_additional)
 
